@@ -21,7 +21,29 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
     )
   }
 
-  await ctx.clients.webhook.sendWebhook(ctx.body)
+  const { profileId } = ctx.body
+
+  // TODO: Remove console.log
+  // eslint-disable-next-line no-console
+  console.log('profileId', profileId)
+
+  const profile = await ctx.clients.psv2.getProfile(profileId)
+
+  // TODO: Remove console.log
+  // eslint-disable-next-line no-console
+  console.log('profile', profile)
+
+  const body = {
+    profile,
+    event: ctx.body,
+    meta: {
+      account,
+      workspace,
+      timestamp: Date.now(),
+    },
+  }
+
+  await ctx.clients.webhook.sendWebhook(body)
 
   ctx.vtex.logger.info({
     message: 'Successfully sent webhook',
