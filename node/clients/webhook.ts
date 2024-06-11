@@ -12,9 +12,9 @@ export default class Webhook extends ExternalClient {
     })
   }
 
-  public async sendWebhook(body: any): Promise<any> {
+  public async sendWebhook(body: unknown): Promise<unknown> {
     return this.http.post('', body, {
-      metric: 'webhook-send'
+      metric: 'webhook-send',
     })
   }
 }

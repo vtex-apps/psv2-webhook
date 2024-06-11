@@ -1,5 +1,6 @@
 import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
 import { Service } from '@vtex/api'
+
 import { Clients } from './clients'
 import { psv2Webhook } from './events/psv2Webhook'
 
@@ -18,7 +19,7 @@ const clients: ClientsConfig<Clients> = {
     webhook: {
       retries: 2,
       timeout: TIMEOUT_MS,
-    }
+    },
   },
 }
 
@@ -37,5 +38,5 @@ export default new Service({
   clients,
   events: {
     psv2Webhook,
-  }
+  },
 })

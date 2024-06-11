@@ -6,14 +6,14 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
   const {
     vtex: { account, workspace },
   } = ctx
-  
+
   const appSettings = await ctx.clients.apps.getAppSettings(
     process.env.VTEX_APP_ID as string
   )
 
   ctx.vtex.settings = { ...ctx.vtex.settings, ...appSettings }
 
-  const webhookUrl = ctx.vtex.settings.webhookUrl
+  const { webhookUrl } = ctx.vtex.settings
 
   if (!webhookUrl) {
     throw new Error(
