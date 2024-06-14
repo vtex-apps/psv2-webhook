@@ -1,6 +1,8 @@
 import type { EventContext } from '@vtex/api'
 
 import type { Clients } from '../clients'
+import type { ProfileSystemEvent } from '../models/profileSystemEvent'
+import { ADDRESS_ENTITY, PROFILE_ENTITY, DELETE_OPERATION } from '../constants'
 
 export async function psv2Webhook(ctx: EventContext<Clients>) {
   const {
@@ -21,29 +23,38 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
     )
   }
 
-  const { profileId } = ctx.body
-
-  // TODO: Remove console.log
-  // eslint-disable-next-line no-console
-  console.log('profileId', profileId)
-
-  const profile = await ctx.clients.psv2.getProfile(profileId)
-
-  // TODO: Remove console.log
-  // eslint-disable-next-line no-console
-  console.log('profile', profile)
-
-  const body = {
-    profile,
-    event: ctx.body,
-    meta: {
-      account,
-      workspace,
-      timestamp: Date.now(),
-    },
+  const event = ctx.body as ProfileSystemEvent
+  const reqBody = {
+    payload: {},
+    profileId: event.profileId,
+    operation: event.operation.toLowerCase(),
+    subject: event.entity.toLowerCase(),
   }
 
-  await ctx.clients.webhook.sendWebhook(body)
+  let docResponse: Record<string, unknown> = {}
+
+  if (event.operation === DELETE_OPERATION) {
+    reqBody.payload = {
+      id: event.documentId,
+    }
+  } else {
+    if (event.entity.toLowerCase() === PROFILE_ENTITY) {
+      docResponse = await ctx.clients.psv2.getProfile(
+        event.profileId,
+        event.documentVersion
+      )
+    } else if (event.entity.toLowerCase() === ADDRESS_ENTITY) {
+      docResponse = await ctx.clients.psv2.getAddress(
+        event.profileId,
+        event.documentId,
+        event.documentVersion
+      )
+    }
+
+    reqBody.payload = docResponse
+  }
+
+  await ctx.clients.webhook.sendWebhook(reqBody)
 
   ctx.vtex.logger.info({
     message: 'Successfully sent webhook',

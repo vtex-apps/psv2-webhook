@@ -9,12 +9,26 @@ export default class PSV2 extends ExternalClient {
         ...options?.headers,
         VtexIdclientAutCookie: context.authToken,
       },
+      retries: 2,
     })
   }
 
-  public async getProfile(profileId: string): Promise<unknown> {
+  public async getProfile(
+    profileId: string,
+    versionId: string
+  ): Promise<Record<string, unknown>> {
     return this.http.get(
-      `/api/storage/profile-system/profiles/${profileId}/unmask?onBehalfOf=psv2-webhook`
+      `/api/storage/profile-system/profiles/${profileId}/versions/${versionId}/unmask?onBehalfOf=psv2-webhook`
+    )
+  }
+
+  public async getAddress(
+    profileId: string,
+    addressId: string,
+    versionId: string
+  ): Promise<Record<string, unknown>> {
+    return this.http.get(
+      `/api/storage/profile-system/profiles/${profileId}/addresses/${addressId}/versions/${versionId}/unmask?onBehalfOf=psv2-webhook`
     )
   }
 }
