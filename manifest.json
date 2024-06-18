@@ -1,0 +1,41 @@
+{
+  "name": "psv2-webhook",
+  "vendor": "vtex",
+  "version": "0.0.1-beta.4",
+  "title": "Profile System V2 Webhook",
+  "description": "Profile System V2 Webhook",
+  "categories": [],
+  "dependencies": {},
+  "builders": {
+    "node": "6.x"
+  },
+  "scripts": {
+    "prereleasy": "bash lint.sh"
+  },
+  "policies": [
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "*"
+      }
+    },
+    {
+      "name": "GetItemResourceV2"
+    },
+    {
+      "name": "GetItemResource"
+    }
+  ],
+  "settingsSchema": {
+    "title": "VTEX Profile System V2 Webhook",
+    "type": "object",
+    "properties": {
+      "webhookUrl": {
+        "title": "Webhook URL",
+        "description": "The URL that will receive the webhook",
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}
