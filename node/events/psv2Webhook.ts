@@ -42,7 +42,7 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
       event.entity,
       event.profileId,
       event.documentId,
-      event.documentVersion,
+      event.documentVersion
     )
 
     reqBody.payload = docResponse

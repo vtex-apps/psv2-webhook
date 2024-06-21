@@ -1,6 +1,12 @@
 import type { InstanceOptions, IOContext } from '@vtex/api'
 import { ExternalClient } from '@vtex/api'
-import { ADDRESS_ENTITY, PROFILE_ENTITY, PURCHASE_INFO_ENTITY, CONTACTS_ENTITY } from '../constants'
+
+import {
+  ADDRESS_ENTITY,
+  PROFILE_ENTITY,
+  PURCHASE_INFO_ENTITY,
+  CONTACTS_ENTITY,
+} from '../constants'
 
 export default class PSV2 extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
@@ -23,16 +29,18 @@ export default class PSV2 extends ExternalClient {
     switch (entity) {
       case PROFILE_ENTITY:
         return this.getProfile(profileId, versionId)
+
       case ADDRESS_ENTITY:
         return this.getAddress(profileId, documentId, versionId)
+
       case PURCHASE_INFO_ENTITY:
         return this.getPurchaseInfo(profileId)
+
       case CONTACTS_ENTITY:
         return this.getContact(profileId, documentId, versionId)
+
       default:
-        throw new Error(
-          `The entity ${entity} is not supported by this app.`
-        )
+        throw new Error(`The entity ${entity} is not supported by this app.`)
     }
   }
 
