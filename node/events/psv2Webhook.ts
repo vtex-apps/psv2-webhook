@@ -2,7 +2,7 @@ import type { EventContext } from '@vtex/api'
 
 import type { Clients } from '../clients'
 import type { ProfileSystemEvent } from '../models/profileSystemEvent'
-import { ADDRESS_ENTITY, PROFILE_ENTITY, DELETE_OPERATION } from '../constants'
+import { DELETE_OPERATION } from '../constants'
 
 export async function psv2Webhook(ctx: EventContext<Clients>) {
   const {
@@ -27,8 +27,8 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
   const reqBody = {
     payload: {},
     profileId: event.profileId,
-    operation: event.operation.toLowerCase(),
-    subject: event.entity.toLowerCase(),
+    operation: event.operation,
+    subject: event.entity,
   }
 
   let docResponse: Record<string, unknown> = {}
@@ -38,18 +38,12 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
       id: event.documentId,
     }
   } else {
-    if (event.entity.toLowerCase() === PROFILE_ENTITY) {
-      docResponse = await ctx.clients.psv2.getProfile(
-        event.profileId,
-        event.documentVersion
-      )
-    } else if (event.entity.toLowerCase() === ADDRESS_ENTITY) {
-      docResponse = await ctx.clients.psv2.getAddress(
-        event.profileId,
-        event.documentId,
-        event.documentVersion
-      )
-    }
+    docResponse = await ctx.clients.psv2.getDocument(
+      event.entity,
+      event.profileId,
+      event.documentId,
+      event.documentVersion,
+    )
 
     reqBody.payload = docResponse
   }
