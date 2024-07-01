@@ -34,6 +34,17 @@
         "title": "Webhook URL",
         "description": "The URL that will receive the webhook",
         "type": "string"
+      },
+      "token": {
+        "title": "Token",
+        "description": "The token to authenticate the webhook sent as X-PS2WEBHOOK-API-AppToken",
+        "type": "string"
+      },
+      "key": {
+        "title": "Key",
+        "format": "password",
+        "description": "The key to authenticate the webhook sent as X-PS2WEBHOOK-API-AppKey",
+        "type": "string"
       }
     }
   },

@@ -7,6 +7,8 @@ export default class Webhook extends ExternalClient {
       ...options,
       headers: {
         ...options?.headers,
+        'X-PS2WEBHOOK-API-AppToken': context.settings.token,
+        'X-PS2WEBHOOK-API-AppKey': context.settings.key,
         'X-Vtex-Use-Https': 'true',
       },
     })
