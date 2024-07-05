@@ -229,7 +229,8 @@ The request body sent to the external API will have the following structure:
 
 ### Request Body Fields
 
-* **Payload**: The response from PSv2's get unmasked document API.
+* **Payload**: Contains the document retrieved from PSv2's get unmasked document API. It includes the main data structure that represents the entity being transmitted.
+* **Meta**: Provides metadata associated with the document, such as versioning details, author information, creation and last update timestamps, and expiration date if applicable.
 * **Profile Id**: The ID of the profile related to the document.
 * **Operation**: The type of operation (insert, update, or delete).
 * **Subject**: The entity of the document (profile, address, contacts, or purchaseInfo).
@@ -244,22 +245,11 @@ For security reasons, you can configure the application to send the following he
 ### Entities
 
 The application works with four entities:
-- Profiles
-- Addresses
+- Profile
+- Address
 - Contacts
 - PurchaseInfo
 
 ### Retry Mechanism Details
 
-To ensure that the external API receives the data, three attempts will be made to deliver the data with a timeout of 2 seconds each. If all attempts fail, the system employs an exponential backoff approach for additional attempts. Each failed request generates an error log in OpenSearch, which triggers an alarm to notify the team.
-
-### Further Reading
-
-- [RFCs](RFCs.md)
-- [Creating, reading, updating, and deleting profiles](CRUD.md)
-- [Working with schema](working-with-schema.md)
-- [How to use Alternate Keys](how-to-use-alternate-keys.md)
-- [How to change emails](how-to-change-emails.md)
-- [How to use TTL](how-to-use-ttl.md)
-- [Creating, reading, updating, and deleting addresses](address_api.md)
-- [Address version API](address_version_api.md)
+To ensure that the external API receives the data, three attempts will be made to deliver the data with a timeout of 2 seconds each. If all attempts fail, the system employs an exponential backoff approach for additional attempts.
