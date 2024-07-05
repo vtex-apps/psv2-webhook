@@ -193,7 +193,8 @@ The request body sent to the external API will have the following structure:
         },
         "clientPreferences": {
           "userId": "87e85f7d-6c1f-4fc4-a50d-8f8020e61aaf",
-          "localeDefault": "en-GB"
+          "localeDefault": "en-GB",
+          "isNewsletterOptIn": false
         },
         "isToSavePersonalData": true,
         "lastUserPurchases": [
