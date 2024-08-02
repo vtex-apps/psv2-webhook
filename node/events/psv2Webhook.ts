@@ -29,6 +29,7 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
     profileId: event.profileId,
     operation: event.operation,
     subject: event.entity,
+    author: event.author,
   }
 
   let docResponse: Record<string, unknown> = {}
