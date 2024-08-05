@@ -4,4 +4,5 @@ export interface ProfileSystemEvent {
   documentVersion: string
   entity: string
   operation: string
+  author: string
 }

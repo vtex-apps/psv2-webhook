@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Author field to Event model.
+
 ## [0.0.5] - 2024-07-09
 
 ### Added

@@ -48,7 +48,8 @@ The request body sent to the external API will have the following structure:
     },
     "profileId": "f8f669d4-f969-4242-92a9-28d78395ef8b",
     "operation": "insert",
-    "subject": "profile"
+    "subject": "profile",
+    "author": "40d2bfa7-80ed-4eb1-bbee-f28ce69f810a"
 }
 ```
 
@@ -61,7 +62,8 @@ The request body sent to the external API will have the following structure:
     },
     "profileId": "f8f669d4-f969-4242-92a9-28d78395ef8b",
     "operation": "delete",
-    "subject": "profile"
+    "subject": "profile",
+    "author": "40d2bfa7-80ed-4eb1-bbee-f28ce69f810a"
 }
 ```
 
@@ -101,7 +103,8 @@ The request body sent to the external API will have the following structure:
   },
   "profileId": "1d6d892e-60cd-4e96-b194-9cc2aa4cd010",
   "operation": "update",
-  "subject": "profile"
+  "subject": "profile",
+  "author": "ee3744ab-b543-438d-aeed-273e22805668",
 }
 ```
 
@@ -139,7 +142,8 @@ The request body sent to the external API will have the following structure:
   },
   "profileId": "fc5b9217-5819-4f97-9a1d-13540a8e0461",
   "operation": "insert",
-  "subject": "address"
+  "subject": "address",
+  "author": "7f4f1a89-5974-4841-a045-c417f2a584a6"
 }
 ```
 
@@ -169,7 +173,8 @@ The request body sent to the external API will have the following structure:
     },
     "profileId": "f8f669d4-f969-4242-92a9-28d78395ef8b",
     "operation": "update",
-    "subject": "contact"
+    "subject": "contact",
+    "author": "7f4f1a89-5974-4841-a045-c417f2a584a6"
 }
 ```
 
@@ -224,7 +229,8 @@ The request body sent to the external API will have the following structure:
   ],
   "profileId": "87e85f7d-6c1f-4fc4-a50d-8f8020e61aaf",
   "operation": "update",
-  "subject": "purchaseInfo"
+  "subject": "purchaseInfo",
+  "author": "d6d8269f-e7cc-4e4b-8b89-3b46a1407937"
 }
 ```
 
@@ -235,6 +241,7 @@ The request body sent to the external API will have the following structure:
 * **Profile Id**: The ID of the profile related to the document.
 * **Operation**: The type of operation (insert, update, or delete).
 * **Subject**: The entity of the document (profile, address, contacts, or purchaseInfo).
+* **Author**: The ID of the user who made the request.
 
 ### Security Headers
 
