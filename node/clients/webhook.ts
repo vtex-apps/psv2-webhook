@@ -3,14 +3,19 @@ import { ExternalClient } from '@vtex/api'
 
 export default class Webhook extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
+    const headers: Record<string, string> = {
+      ...options?.headers,
+      'X-Vtex-Use-Https': 'true',
+    }
+
+    if (context.settings.token && context.settings.key) {
+      headers['X-PS2WEBHOOK-API-AppToken'] = context.settings.token
+      headers['X-PS2WEBHOOK-API-AppKey'] = context.settings.key
+    }
+
     super(context.settings.webhookUrl, context, {
       ...options,
-      headers: {
-        ...options?.headers,
-        'X-PS2WEBHOOK-API-AppToken': context.settings.token,
-        'X-PS2WEBHOOK-API-AppKey': context.settings.key,
-        'X-Vtex-Use-Https': 'true',
-      },
+      headers,
     })
   }
 

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Adjust client to send event without app key or token configured. 
+
 ## [0.0.5] - 2024-07-09
 
 ### Added
