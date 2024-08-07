@@ -6,7 +6,7 @@ import {
   PROFILE_ENTITY,
   PURCHASE_INFO_ENTITY,
   CONTACTS_ENTITY,
-} from '../constants'
+} from '../utils/constants'
 
 export default class PSV2 extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {

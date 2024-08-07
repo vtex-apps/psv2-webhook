@@ -11,7 +11,8 @@
     "@vtex/api": "6.47.0",
     "@vtex/test-tools": "^1.0.0",
     "@vtex/tsconfig": "^0.5.6",
-    "typescript": "3.9.7"
+    "typescript": "3.9.7",
+    "vtex.psv2-webhook": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.psv2-webhook@0.0.4/public/_types/react"
   },
   "resolutions": {
     "@types/testing-library__dom": "6.12.1",
