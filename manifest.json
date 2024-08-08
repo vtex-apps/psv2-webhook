@@ -46,6 +46,25 @@
         "format": "password",
         "description": "The key to authenticate the webhook sent as X-PS2WEBHOOK-API-AppKey",
         "type": "string"
+      },
+      "excludedAuthors": {
+        "title": "Excluded Authors",
+        "description": "A list of authors to be excluded from webhook requests.",
+        "type": "array",
+        "items": {
+          "properties": {
+            "name": {
+              "title": "Author Name",
+              "description": "A friendly name for identification purposes.",
+              "type": "string"
+            },
+            "value": {
+              "title": "Author Identifier",
+              "description": "The identifier of the author to be excluded from the webhook requests.",
+              "type": "string"
+            }
+          }
+        }
       }
     }
   },
