@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.0.7] - 2024-08-08
+
 ### Added
 - Added functionality to exclude specific authors from triggering webhook requests.
 
