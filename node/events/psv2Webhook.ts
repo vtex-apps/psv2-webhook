@@ -2,7 +2,7 @@ import type { EventContext } from '@vtex/api'
 
 import type { Clients } from '../clients'
 import type { ProfileSystemEvent } from '../models/profileSystemEvent'
-import { DELETE_OPERATION } from '../constants'
+import { DELETE_OPERATION } from '../utils/constants'
 
 export async function psv2Webhook(ctx: EventContext<Clients>) {
   const {
@@ -15,7 +15,7 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
 
   ctx.vtex.settings = { ...ctx.vtex.settings, ...appSettings }
 
-  const { webhookUrl } = ctx.vtex.settings
+  const { webhookUrl, excludedAuthors } = ctx.vtex.settings
 
   if (!webhookUrl) {
     throw new Error(
@@ -24,6 +24,20 @@ export async function psv2Webhook(ctx: EventContext<Clients>) {
   }
 
   const event = ctx.body as ProfileSystemEvent
+
+  const ignoreEvent = excludedAuthors.some(
+    (author: { value: string }) => author.value === event.author
+  )
+
+  if (ignoreEvent) {
+    ctx.vtex.logger.info({
+      message: `Event ignored due to excluded author setting`,
+      author: event.author,
+    })
+
+    return
+  }
+
   const reqBody = {
     payload: {},
     profileId: event.profileId,
